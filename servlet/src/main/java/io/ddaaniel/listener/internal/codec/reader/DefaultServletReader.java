@@ -58,7 +58,7 @@ public class DefaultServletReader implements Reader {
 						return Optional.empty();
 					}
 					buffer.forceFlipForBody();
-					isEndOrThrow(new MalformedBodyException(" -> body shorter than reported content-length "));
+					isEndOrThrow(new MalformedBodyException("body shorter than reported content-length "));
 					return Optional.of(builder.build());
 				}
 				if (bytesRead == 0 && !buffer.hasUnparsedData()) {
@@ -72,12 +72,12 @@ public class DefaultServletReader implements Reader {
 				}
 				if (buffer.isStalled()) {
 					buffer.resetForNextRequest();
-					throw new URITooLongException(" -> uri too long, error 414 "); 
+					throw new URITooLongException("uri too long, error 414 "); 
 				}
 			}
 		} catch (Exception  exception) { 
              if (exception instanceof RuntimeException) throw (RuntimeException) exception;
-			 throw new RuntimeException(" -> Failure when parsing the servlet-request: ", exception); 
+			 throw new RuntimeException("Failure when parsing the servlet-request: ", exception); 
 		}
 
 		return Optional.of(builder.build());

@@ -55,7 +55,7 @@ public class RouterProcessor extends AbstractProcessor {
 						if (httpMethod == null || httpMethod.trim().isEmpty()) {
 							messager.printMessage(
 									Diagnostic.Kind.ERROR,
-									" -> Parameter 'method' can not be empty ",
+									" Parameter 'method' can not be empty ",
 									element
 							);	
 							return false;

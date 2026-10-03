@@ -19,19 +19,19 @@ public class Main {
 
 		try {
 			ServletContainer s = new DefaultServletContainer().loadContainer(port);
-			log.info(" -> Server started on port " + port);
+			log.info("Server started on port " + port);
 
 			Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-				log.info(" -> Signal received! Initiating graceful shutdown...");
+				log.info("Signal received! Initiating graceful shutdown...");
 				s.close();
 
 				keepAliveLatch.countDown(); 
 			}));
 			keepAliveLatch.await();
-			log.info(" -> Server gracefully stopped");
+			log.info("Server gracefully stopped");
 
 		} catch (Throwable e) { 
-			log.log(Level.SEVERE, " -> Error starting server: " + e.getMessage(), e); 
+			log.log(Level.SEVERE, "Error starting server: " + e.getMessage(), e); 
 			System.exit(1);	
 		}
 	}

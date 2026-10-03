@@ -82,7 +82,7 @@ public class ServletReader_Test {
 		var err = assertThrowsExactly(MalformedHeaderException.class, () -> {
 			new DefaultServletReader(connErr).readFromConnection();
 		});
-		assertEquals(" -> malformed header-name ", err.getMessage());
+		assertEquals("malformed header-name ", err.getMessage());
 	}
 
 	/**
@@ -120,6 +120,6 @@ public class ServletReader_Test {
 		var err = assertThrowsExactly(MalformedBodyException.class, () -> {
 			badReader.get().body().readAllBytes().toString();
 		});
-		assertEquals(" -> body shorter than reported content-length ", err.getMessage());
+		assertEquals("body shorter than reported content-length ", err.getMessage());
 	}
 }

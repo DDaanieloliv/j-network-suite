@@ -33,7 +33,7 @@ public class CommonRequestRouter {
             Method method = table.getMethod("table");
             this.compiledTable = (Map<String, Supplier<Object>>) method.invoke(null);
         } catch (Exception e) {
-            throw new RuntimeException(" -> Error on initialize the table router: ", e);
+            throw new RuntimeException(" Error on initialize the table router: ", e);
         }
     }
 
@@ -45,7 +45,7 @@ public class CommonRequestRouter {
 
 		if (routeAction == null) {
 			if (log.isLoggable(Level.FINE)) 
-				log.log(Level.FINE, " -> no route-action found to respective route-key: ", routeKey );
+				log.log(Level.FINE, " no route-action found to respective route-key: ", routeKey );
 			return Optional.empty();
 		}
 

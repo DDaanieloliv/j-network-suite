@@ -63,7 +63,7 @@ public class HttpServletResponse {
 
 	public void sendError(HttpStatusCode status, String message) throws IOException {
 		if (committed) {
-			throw new IllegalStateException(" -> Cannot send error: response already committed to TCP socket");
+			throw new IllegalStateException("Cannot send error: response already committed to TCP socket");
 		}
 		reset();
 		this.status = status;
@@ -76,7 +76,7 @@ public class HttpServletResponse {
 
 	public void reset() {
 		if (committed) {
-			throw new IllegalStateException(" -> Cannot reset response: response already committed to TCP socket");
+			throw new IllegalStateException("Cannot reset response: response already committed to TCP socket");
 		}
 		this.bodyBuffer.reset();
 		this.headers.clear();
@@ -85,7 +85,7 @@ public class HttpServletResponse {
 
 	public void resetBuffer() {
 		if (committed) {
-			throw new IllegalStateException(" -> Cannot reset buffer: response already committed to TCP socket");
+			throw new IllegalStateException("Cannot reset buffer: response already committed to TCP socket");
 		}
 		this.bodyBuffer.reset();
 	}
@@ -107,17 +107,17 @@ public class HttpServletResponse {
 
 
     public void setStatus(HttpStatusCode status) {
-        if (committed) throw new IllegalStateException(" -> Response already committed to TCP socket");
+        if (committed) throw new IllegalStateException("Response already committed to TCP socket");
         this.status = status;
     }
 
     public void setHeader(String name, String value) {
-        if (committed) throw new IllegalStateException(" -> Response already committed to TCP socket");
+        if (committed) throw new IllegalStateException("Response already committed to TCP socket");
         this.headers.set(name, value);
     }
 
     public void setBody(byte[] bytes) throws IOException {
-        if (committed) throw new IllegalStateException(" -> Response already committed to TCP socket");
+        if (committed) throw new IllegalStateException("Response already committed to TCP socket");
         this.bodyBuffer.write(bytes);
     }
 
@@ -147,7 +147,7 @@ public class HttpServletResponse {
         if (bodyBytes instanceof byte[] bytes) {
             setBody(bytes);
         } else if (bodyBytes != null) {
-            throw new IllegalStateException(" -> Response body was defined with a illegal type instead it's default's 'byte[]'");
+            throw new IllegalStateException("Response body was defined with a illegal type instead it's default's 'byte[]'");
         }
     }
 }

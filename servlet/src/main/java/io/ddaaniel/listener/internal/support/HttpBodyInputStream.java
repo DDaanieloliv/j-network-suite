@@ -31,7 +31,7 @@ public class HttpBodyInputStream extends InputStream {
 			int read = channel.read(buf);
 			if (read == -1) {
 				if (bytesReadSoFar < contentLength) {
-					throw new MalformedBodyException(" -> body shorter than reported content-length ");
+					throw new MalformedBodyException("body shorter than reported content-length ");
 				}
 				return -1;
 			}
@@ -57,7 +57,7 @@ public class HttpBodyInputStream extends InputStream {
 			int read = channel.read(buf);
 			if (read == -1) {
 				if (bytesReadSoFar < contentLength) {
-					throw new MalformedBodyException(" -> body shorter than reported content-length ");
+					throw new MalformedBodyException("body shorter than reported content-length ");
 				}
 				return -1;
 			}

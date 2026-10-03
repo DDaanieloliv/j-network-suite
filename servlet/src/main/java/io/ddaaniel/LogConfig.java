@@ -55,7 +55,7 @@ public class LogConfig {
 	}
 
 	public static void initialize() {
-		Logger.getLogger(LogConfig.class.getName()).info(" -> Application configurations loaded successfully.");
+		Logger.getLogger(LogConfig.class.getName()).info("Application configurations loaded successfully.");
 	}
 
 	public static String getProperty(String key) {

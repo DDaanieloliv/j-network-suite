@@ -41,7 +41,7 @@ public class SerializationManager {
 			}
 		}
 
-		throw new IllegalArgumentException(" -> No MessageSerializer found for the type: " + bodyClass.getName());
+		throw new IllegalArgumentException("No MessageSerializer found for the type: " + bodyClass.getName());
 	}
 
 	public record SerializedResult(byte[] data, String contentType) {

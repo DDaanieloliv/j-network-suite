@@ -40,7 +40,7 @@ public class HttpCommunicationDecoder implements CommunicationProtocol {
 				state = cwState;
 				if (log.isLoggable(Level.FINER)) {
 					log.log(Level.FINER,
-							" -> parser state transition: {0} -> {1}",
+							"parser state transition: {0} -> {1}",
 							new Object[] { cwState, state });
 				}
 				if (state != Parser.READ_HEADER) {
@@ -51,7 +51,7 @@ public class HttpCommunicationDecoder implements CommunicationProtocol {
 				state = cwState;
 				if (log.isLoggable(Level.FINER)) {
 					log.log(Level.FINER,
-							" -> parser state transition: {0} -> {1}",
+							"parser state transition: {0} -> {1}",
 							new Object[] { cwState, state });
 				}
 				if (state == Parser.SKIP_INITIAL_LINE_CHARS) {
@@ -63,7 +63,7 @@ public class HttpCommunicationDecoder implements CommunicationProtocol {
 				state = cwState;
 				if (log.isLoggable(Level.FINER)) {
 					log.log(Level.FINER,
-							" -> parser state transition: {0} -> {1}",
+							"parser state transition: {0} -> {1}",
 							new Object[] { cwState, state });
 				}
 				break;
@@ -135,15 +135,15 @@ public class HttpCommunicationDecoder implements CommunicationProtocol {
 			consumeLine(buffer, headerline);
 			var parts = getParts(headerline);
 			if (parts.length != 2) {
-				throw new MalformedHeaderException(" -> malformed field-line ");
+				throw new MalformedHeaderException("malformed field-line ");
 			}
 			var name = parts[0];
 			var value = HttpUtil.TrimSpace(parts[1]);
 			if (HttpUtil.HasSuffix(name, " ".getBytes())) {
-				throw new MalformedHeaderException(" -> malformed field-name ");
+				throw new MalformedHeaderException("malformed field-name ");
 			}
 			if (!HttpUtil.isToken(name)) {
-				throw new MalformedHeaderException(" -> malformed header-name ");
+				throw new MalformedHeaderException("malformed header-name ");
 			}
 			builder.headers().set(new String(name), new String(value));
 		}

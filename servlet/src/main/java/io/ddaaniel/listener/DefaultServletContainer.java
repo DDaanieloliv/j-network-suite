@@ -52,7 +52,7 @@ public class DefaultServletContainer implements ServletContainer {
 		try {
 			this.executor = Executors.newVirtualThreadPerTaskExecutor();
 		} catch (Exception e) {
-			throw new RuntimeException(" -> Error when create ServletContainer: ", e);
+			throw new RuntimeException(" Error when create ServletContainer: ", e);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class DefaultServletContainer implements ServletContainer {
 		var router = new CommonRequestRouter();
 		return this.loadServletContainer(port, (req, res) -> {
 			if (log.isLoggable(Level.FINE)) {
-				log.log(Level.FINE, " -> Dispatching request [{0} {1}]", 
+				log.log(Level.FINE, " Dispatching request [{0} {1}]", 
 						new Object[]{ req.method(), req.uri() });
 			}
 			var responseEntity = router.dispatch(req);
@@ -82,7 +82,7 @@ public class DefaultServletContainer implements ServletContainer {
 			executor.shutdown();
 			log.info("ServletContainer shutdown executed cleanly.");
 		} catch (Throwable e) { 
-			log.log(Level.SEVERE, " -> Error when closing server: ", e);
+			log.log(Level.SEVERE, " Error when closing server: ", e);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class DefaultServletContainer implements ServletContainer {
 		this.listener = ServerSocketChannel.open();
 		this.listener.bind(new InetSocketAddress(port));
 
-		log.log(Level.INFO, " -> Server boundary socket bound successfully to port: ", port);
+		log.log(Level.INFO, " Server boundary socket bound successfully to port: ", port);
 
 		executor.execute(() -> {
 			runServer(listener);
@@ -117,7 +117,7 @@ public class DefaultServletContainer implements ServletContainer {
 			}
 		} catch (Exception e) { 
 			if (!closed.get()) {
-				log.log(Level.SEVERE, " -> Fatal crash in main TCP accept loop! Server stopped accepting connections. ", e);
+				log.log(Level.SEVERE, " Fatal crash in main TCP accept loop! Server stopped accepting connections. ", e);
 			}
 		}
 	}
@@ -152,7 +152,7 @@ public class DefaultServletContainer implements ServletContainer {
 
 		} catch (Exception e) {
 			if (!closed.get()) {
-				log.log(Level.FINE, " -> Connection closed or network reset: " + e.getMessage());
+				log.log(Level.FINE, " Connection closed or network reset: " + e.getMessage());
 			}
 		}
 	}
@@ -178,11 +178,11 @@ public class DefaultServletContainer implements ServletContainer {
 
 
 	private void handleGlobalError(Throwable error, HttpServletResponse response) {
-		log.log(Level.SEVERE, " -> Unhandled exception during HTTP request processing: ", error);
+		log.log(Level.SEVERE, " Unhandled exception during HTTP request processing: ", error);
 		try {
 			response.sendError(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error: " + error.getMessage());
 		} catch (Throwable fatal) {
-			log.log(Level.SEVERE, " -> Fatal: Failed to format 500 error response", fatal);
+			log.log(Level.SEVERE, " Fatal: Failed to format 500 error response", fatal);
 		}
 	}
 }
