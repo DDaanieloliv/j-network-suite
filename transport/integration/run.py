@@ -24,7 +24,7 @@ def ensure_connection():
 
 def main():
     project_dir = Path(__file__).resolve().parent.parent
-    jar = project_dir / "target" / "server-1.0-SNAPSHOT.jar"
+    jar = project_dir / "target" / "j-network-suite.jar"
 
     server = subprocess.Popen([
         "java",
