@@ -1,4 +1,4 @@
-# J21-Servlet
+# j-network-suite
 
 > A humble HTTP server implementation built from the TCP layer up, exploring the
 > internal mechanisms involved in HTTP request processing, routing,
@@ -387,7 +387,7 @@ The project follows a Maven multi-module architecture.
 ```mermaid
 flowchart TD
 
-    ROOT["j21-servlet-parent"]
+    ROOT["j-network-suite-parent"]
 
     PATH["table"]
 
@@ -490,7 +490,7 @@ For while just one type of request :(
 The `RouterProcessor` is a Java annotation processor.
 As you could assume it process annotations, but specifically 
 annotation that I declare / create  on the directory 
-`j21-servlet/table/src/main/java/io/ddaaniel/annotations`.
+`j-network-suite/table/src/main/java/io/ddaaniel/annotations`.
 
 Conceptually:
 
@@ -808,7 +808,7 @@ separation between build-time and runtime responsibilities.
 | Serialize response          | Runtime |
 | Write response to socket    | Runtime |
 
-This separation is one of the central architectural concepts of `j21-servlet`.
+This separation is one of the central architectural concepts of `j-network-suite`.
 
 ---
 
